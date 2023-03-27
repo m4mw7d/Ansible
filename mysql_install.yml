@@ -20,10 +20,7 @@
         state: present
 
     - name: Install MySQL-python
-      pip:
-        name: MySQL-python
-        state: present
-        user: yes
+      command: pip3 install MySQL-python --user  
 
     - name: Start MySQL service
       service:
