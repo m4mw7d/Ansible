@@ -1,0 +1,29 @@
+---
+- name: Install MySQL
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install MySQL package
+      yum:
+        name: mysql-server
+        state: present
+    
+    - name: Install mysql
+      yum: 
+        name: mysql
+        state: present
+    
+    - name: Start MySQL service
+      service:
+        name: mysqld
+        state: started
+        enabled: yes
+      notify:
+        - restart mysql
+
+  handlers:
+    - name: restart mysql
+      service:
+        name: mysql
+        state: restarted
