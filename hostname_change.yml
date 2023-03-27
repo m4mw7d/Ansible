@@ -1,0 +1,9 @@
+---
+- name: Set hostname
+  hosts: all 
+  become: true
+
+  tasks:
+    - name: Set hostname to webexampleorg
+      hostname:
+        name: webexampleorg

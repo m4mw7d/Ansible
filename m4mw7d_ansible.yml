@@ -1,0 +1,31 @@
+##MySQL dumping
+- name: Schedule MySQL database dump
+  hosts: database_server
+  become: true
+
+  tasks:
+    - name: Create backup directory
+      file:
+        path: /backup/mysql
+        state: directory
+        mode: '0700'
+
+    - name: Dump MySQL database
+      mysql_db:
+        state: dump
+        name: your_database_name
+        login_host: localhost
+        login_user: your_mysql_username
+        login_password: your_mysql_password
+        target: /backup/mysql/your_database_name.sql
+      register: dump_result
+
+    - name: Schedule weekly database dump
+      cron:
+        name: "Weekly database dump"
+        minute: "0"
+        hour: "21"
+        weekday: "0"
+        job: "cd /backup/mysql && mysqldump -h localhost -u your_mysql_username -p'your_mysql_password' your_database_name > your_database_name.sql"
+      when: dump_result.changed
+

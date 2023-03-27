@@ -1,0 +1,37 @@
+---
+- name: Create MySQL database
+  hosts: all
+  become: true
+
+  vars:
+    db_name: dBB
+    db_user: db:conferencia
+    db_password: redhat
+
+  tasks:
+    - name: Create MySQL database
+      mysql_db:
+          name: "{{ db_name }}"
+          state: present
+          login_host: localhost
+          login_user: root
+          login_password: redhat
+        
+    - name: Create MySQL user with all privileges
+      mysql_user:
+          name: "{{ db_user }}"
+          password: "{{ db_password }}"
+          priv: "*.*:ALL"
+          host: localhost
+          state: present
+          login_user: root
+          login_password: redhat
+
+    - name: Grant privileges to the MySQL user
+      mysql_user:
+          name: "{{ db_user }}"
+          priv: "{{ db_name }}.*:ALL"
+          host: localhost
+          state: present
+          login_user: root
+          login_password: redhat
