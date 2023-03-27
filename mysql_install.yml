@@ -19,10 +19,12 @@
         name: python3-pip
         state: present
 
-    - name: Install mysql-python
-      yum:
-        name: mysqldb-python
-        state: present  
+    - name: Install MySQL-python package
+      pip:
+        name: MySQL-python
+        state: present
+        executable: pip3
+        extra_args: --user
 
     - name: Start MySQL service
       service:
