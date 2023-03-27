@@ -1,6 +1,6 @@
 ##MySQL dumping
 - name: Schedule MySQL database dump
-  hosts: database_server
+  hosts: all
   become: true
 
   tasks:
