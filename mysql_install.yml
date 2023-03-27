@@ -25,5 +25,5 @@
   handlers:
     - name: restart mysql
       service:
-        name: mysql
+        name: mysqld
         state: restarted
