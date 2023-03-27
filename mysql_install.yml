@@ -21,7 +21,7 @@
 
     - name: Install mysql-python
       yum:
-        name: pymysql
+        name: python3-pymysql
         state: present
       
 
