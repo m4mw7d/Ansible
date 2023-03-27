@@ -21,7 +21,7 @@
 
     - name: Install mysql-python
       yum:
-        name: python-mysqldb
+        name: mysqldb-python
         state: present  
 
     - name: Start MySQL service
