@@ -22,6 +22,7 @@
     - name: Install MySQL-python
       pip:
         name: MySQL-python
+        user: yes
 
     - name: Start MySQL service
       service:
