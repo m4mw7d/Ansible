@@ -22,7 +22,7 @@
       with_items:
         - pip
         - MySQL-python
-        
+
     - name: Start MySQL service
       service:
         name: mysqld
