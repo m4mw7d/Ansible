@@ -19,12 +19,8 @@
         name: python3-pip
         state: present
 
-    - name: Install MySQL-python package
-      pip:
-        name: MySQL-python
-        state: present
-        executable: pip3
-        extra_args: --user
+    - name: Install MySQL-python
+      command: pip3 install MySQL-python --user  
 
     - name: Start MySQL service
       service:
