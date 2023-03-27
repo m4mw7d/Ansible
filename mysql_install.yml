@@ -14,14 +14,14 @@
         name: mysql
         state: present
 
-    - name: MySQL through pip
-      sudo: yes
+    - name: Install pip
+      yum:
+        name: python-pip
+        state: present
+
+    - name: Install MySQL-python
       pip:
-        name: "{{item}}"
-        state: forceinstall
-      with_items:
-        - pip
-        - MySQL-python
+        name: MySQL-python
 
     - name: Start MySQL service
       service:
