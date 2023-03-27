@@ -13,7 +13,16 @@
       yum: 
         name: mysql
         state: present
-    
+
+    - name: MySQL through pip
+      sudo: yes
+      pip:
+        name: "{{item}}"
+        state: forceinstall
+      with_items:
+        - pip
+        - MySQL-python
+        
     - name: Start MySQL service
       service:
         name: mysqld
