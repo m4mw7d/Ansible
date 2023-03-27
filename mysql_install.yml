@@ -19,8 +19,11 @@
         name: python3-pip
         state: present
 
-    - name: Install MySQL-python
-      command: pip3 install MySQL-python --user  
+    - name: Install mysql-python
+      yum:
+        name: pymysql
+        state: present
+      
 
     - name: Start MySQL service
       service:
