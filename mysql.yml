@@ -13,7 +13,7 @@
       mysql_db:
           name: "{{ db_name }}"
           state: present
-          login_host: root
+          login_host: localhost
           login_user: root
           login_password: redhat
         
@@ -22,7 +22,7 @@
           name: "{{ db_user }}"
           password: "{{ db_password }}"
           priv: "*.*:ALL"
-          host: root
+          host: localhost
           state: present
           login_user: root
           login_password: redhat
@@ -31,7 +31,7 @@
       mysql_user:
           name: "{{ db_user }}"
           priv: "{{ db_name }}.*:ALL"
-          host: root
+          host: localhost
           state: present
           login_user: root
           login_password: redhat
