@@ -24,7 +24,7 @@
       cron:
         name: "Weekly database dump"
         minute: "0"
-        hour: "21"
+        hour: "23"
         weekday: "0"
         job: "cd /backup/mysql && mysqldump -h localhost -u your_mysql_username -p'your_mysql_password' your_database_name > your_database_name.sql"
       when: dump_result.changed

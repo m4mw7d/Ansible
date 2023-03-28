@@ -12,10 +12,6 @@
     - name: Create MySQL database
       mysql_db:
           name: "{{ db_name }}"
-          state: present
-          login_host: localhost
-          login_user: root
-          login_password: redhat
         
     - name: Create MySQL user with all privileges
       mysql_user:
@@ -24,8 +20,6 @@
           priv: "*.*:ALL"
           host: localhost
           state: present
-          login_user: root
-          login_password: redhat
 
     - name: Grant privileges to the MySQL user
       mysql_user:
@@ -33,5 +27,3 @@
           priv: "{{ db_name }}.*:ALL"
           host: localhost
           state: present
-          login_user: root
-          login_password: redhat
