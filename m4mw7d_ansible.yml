@@ -13,11 +13,11 @@
     - name: Dump MySQL database
       mysql_db:
         state: dump
-        name: your_database_name
+        name: dBB
         login_host: localhost
-        login_user: your_mysql_username
-        login_password: your_mysql_password
-        target: /backup/mysql/your_database_name.sql
+        login_user: db:conferencia
+        login_password: redhat
+        target: /backup/mysql/dBB.sql
       register: dump_result
 
     - name: Schedule weekly database dump
@@ -26,6 +26,6 @@
         minute: "0"
         hour: "23"
         weekday: "0"
-        job: "cd /backup/mysql && mysqldump -h localhost -u your_mysql_username -p'your_mysql_password' your_database_name > your_database_name.sql"
+        job: "cd /backup/mysql && mysqldump -h localhost -u db:conferencia -p'redhat' dBB > dBB.sql"
       when: dump_result.changed
 
