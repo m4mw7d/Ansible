@@ -1,0 +1,7 @@
+---
+# Handler call for apache restart
+
+  - name: restart Apache
+    service:
+      name: httpd
+      state: restarted

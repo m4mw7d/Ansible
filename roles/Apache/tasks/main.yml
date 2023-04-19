@@ -1,0 +1,32 @@
+---
+# Tasks for Apache
+
+- name: Install Apache
+  yum:
+    name: httpd
+    state: present
+
+- name: Copy Apache config file
+  template:
+    src: apache.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+  notify:
+    - restart Apache
+
+- name: Ensure Apache service is running and enabled
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Set firewall rule for Apache
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+    immediate: yes
+
+- name: Ensure Apache starts on boot
+  systemd:
+    name: httpd
+    enabled: yes
