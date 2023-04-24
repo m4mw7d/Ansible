@@ -1,29 +1,27 @@
-# ---
-# - name: create /opt/www
-#   hosts: all
-#   become: true
+ ---
+ - name: create /opt/www
+   hosts: all
+   become: true
 
-#   tasks:
-#   - name: Create /opt/www directory
-#     file:
-#        path: /opt/www
-#        state: directory
-#        owner: apache
-#        group: apache
-#        mode: '0755'
+   tasks:
+   - name: Create /opt/www directory
+     file:
+        path: /opt/www
+        state: directory
 
-# - name: Apache html root
-#   hosts: all
-#   become: true
-#   vars:
-#     apache_path: /opt/www
 
-#   tasks: 
-#     - name: change directory
-#       lineinfile:
-#         path: /etc/httpd/conf/httpd.conf
-#         regexp: '^DocumentRoot.*'
-#         line: 'DocumentRoot "{{ apache_path }}"'
+ - name: Apache html root
+   hosts: all
+   become: true
+   vars:
+     apache_path: /opt/www
+
+   tasks: 
+     - name: change directory
+       lineinfile:
+         path: /etc/httpd/conf/httpd.conf
+         regexp: '^DocumentRoot.*'
+         line: 'DocumentRoot "{{ apache_path }}"'
  
 - name:  Configure Apache
   hosts: all
