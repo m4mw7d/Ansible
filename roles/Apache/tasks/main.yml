@@ -6,18 +6,13 @@
     name: httpd
     state: present
 
-# - name: Copy Apache config file
-#   template:
-#     src: apache.conf.j2
-#     dest: /etc/httpd/conf/httpd.conf
-#   notify:
-#     - restart Apache
-
 - name: Ensure Apache service is running and enabled
   service:
     name: httpd
     state: started
     enabled: yes
+  notify:
+    - restart Apache
 
 - name: Set firewall rule for Apache
   firewalld:
