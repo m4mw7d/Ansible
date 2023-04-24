@@ -1,4 +1,10 @@
 ---
+- name:  Configure Apache
+  hosts: all
+  become: true
+  roles:
+    - Apache
+    
 - name: create /opt/www
   hosts: all
   become: true
@@ -25,8 +31,3 @@
         regexp: '^DocumentRoot.*'
         line: 'DocumentRoot "{{ apache_path }}"'
  
-- name:  Configure Apache
-  hosts: all
-  become: true
-  roles:
-    - Apache
