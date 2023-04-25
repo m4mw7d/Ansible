@@ -31,12 +31,12 @@
         regexp: '^DocumentRoot.*'
         line: 'DocumentRoot "{{ apache_path }}"'
 
-- name: Set SELinux privileges on new Apache document root
-  hosts: web_servers
+- name: Set SELinux privileges
+  hosts: all
   become: true
 
   tasks:
-    - name: Set SELinux context for new document root
+    - name: Set SELinux context
       selinux:
         seuser: system_u
         serole: object_r
