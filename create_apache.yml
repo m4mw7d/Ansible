@@ -37,10 +37,10 @@
 
   tasks:
     - name: Set SELinux context for /opt/www directory
-      file:
-        path: /opt/www
-        state: directory
-        selevel: httpd_sys_content_t
-        recurse: yes
+      sefcontext:
+        target: /opt/www
+        setype: httpd_sys_content_t
+        state: present
+        
 
  
