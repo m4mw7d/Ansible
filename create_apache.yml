@@ -30,4 +30,17 @@
         path: /etc/httpd/conf/httpd.conf
         regexp: '^DocumentRoot.*'
         line: 'DocumentRoot "{{ apache_path }}"'
+
+- name: Set SELinux context for /opt/www directory
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Set SELinux context for /opt/www directory
+      file:
+        path: /opt/www
+        state: directory
+        selevel: httpd_sys_content_t
+        recurse: yes
+
  
